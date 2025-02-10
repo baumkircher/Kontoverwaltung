@@ -1,13 +1,15 @@
-public class Girokonto
-{
-    private static int cntKonto = 1;
-    private int kontoNummer;
-
-    Girokonto () {
-        this.kontoNummer = cntKonto++;
+class Girokonto extends Basis {
+    public Girokonto(String kontoinhaber, String bankleitzahl, String kontonummer, double kontostand) {
+        super(kontoinhaber, bankleitzahl, kontonummer, kontostand, "Girokonto");
     }
 
-    public int getKontoNummer(){
-        return kontoNummer;
+    @Override
+    public void abheben(double betrag) {
+        if (betrag > 0 && betrag <= kontostand) {
+            kontostand -= betrag;
+            System.out.println(betrag + " abgehoben - Neuer Kontostand: " + kontostand + " EURO");
+        } else {
+            System.out.println("Ungültiger Betrag oder nicht genügend Guthaben.");
+        }
     }
 }
