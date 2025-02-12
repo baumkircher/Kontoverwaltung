@@ -7,12 +7,13 @@ class Kreditkonto extends Basis {
     }
 
     @Override
-    public void abheben(double betrag) {
+    public boolean abheben(double betrag) {
         if (betrag > 0 && (kontostand - betrag) >= -kreditlimit) {
             kontostand -= betrag;
             System.out.println(betrag + " abgehoben - Neuer Kontostand: " + kontostand + " EURO");
-        } else {
-            System.out.println("Limit überschritten!");
+            return true;
         }
+        System.out.println("Limit überschritten!");
+        return false;
     }
 }

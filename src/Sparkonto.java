@@ -1,17 +1,16 @@
-public class Sparkonto extends Basis{
-
-
-    public Sparkonto(String kontoinhaber, String bankleitzahl, String kontonummer, double kontostand, String kontoart) {
-        super(kontoinhaber, bankleitzahl, kontonummer, kontostand, kontoart);
+class Sparkonto extends Basis {
+    public Sparkonto(String kontoinhaber, String bankleitzahl, String kontonummer, double kontostand) {
+        super(kontoinhaber, bankleitzahl, kontonummer, kontostand, "Sparkonto");
     }
 
     @Override
-    public void abheben(double betrag) {
-        if (kontostand >= betrag) {
+    public boolean abheben(double betrag) {
+        if (betrag > 0 && betrag <= kontostand) {
             kontostand -= betrag;
             System.out.println(betrag + " EUR abgehoben. Neuer Kontostand: " + kontostand + " EURO");
-        } else {
-            System.out.println("Nicht genug Guthaben auf dem Sparkonto.");
+            return true;
         }
+        System.out.println("Nicht genug Guthaben auf dem Sparkonto.");
+        return false;
     }
 }

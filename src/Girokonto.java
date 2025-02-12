@@ -4,12 +4,13 @@ class Girokonto extends Basis {
     }
 
     @Override
-    public void abheben(double betrag) {
+    public boolean abheben(double betrag) {
         if (betrag > 0 && betrag <= kontostand) {
             kontostand -= betrag;
             System.out.println(betrag + " abgehoben - Neuer Kontostand: " + kontostand + " EURO");
-        } else {
-            System.out.println("Ungültiger Betrag oder nicht genügend Guthaben.");
+            return true;
         }
+        System.out.println("Ungültiger Betrag oder nicht genügend Guthaben.");
+        return false;
     }
 }
